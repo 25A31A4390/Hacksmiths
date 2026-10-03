@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SmartWaste AI — Municipal Waste Collection Optimization Platform</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>♻️</text></svg>">
+</head>
+<body>
+  <div class="app-layout">
+    <!-- LEFT SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="brand-badge">
+          <div class="brand-logo-icon">♻️</div>
+          <div class="brand-title">SmartWaste <span>AI</span></div>
+        </div>
+        <div class="brand-subtitle">Municipal Collection Optimization Platform</div>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="sidebar-nav">
+        <a class="nav-item active" data-view="dashboard" onclick="navigateTo('dashboard')">
+          <span class="nav-item-icon">📊</span>
+          <span>Dashboard</span>
+        </a>
+        <a class="nav-item" data-view="points" onclick="navigateTo('points')">
+          <span class="nav-item-icon">📍</span>
+          <span>Collection Points</span>
+          <span class="nav-item-badge">20</span>
+        </a>
+        <a class="nav-item" data-view="map" onclick="navigateTo('map')">
+          <span class="nav-item-icon">🗺️</span>
+          <span>Live Map</span>
+          <span class="nav-item-badge" style="background-color: #065f46; color: #6ee7b7;">Live</span>
+        </a>
+        <a class="nav-item" data-view="predictions" onclick="navigateTo('predictions')">
+          <span class="nav-item-icon">🤖</span>
+          <span>AI Predictions</span>
+          <span class="nav-item-badge">24h/48h</span>
+        </a>
+        <a class="nav-item" data-view="fleet" onclick="navigateTo('fleet')">
+          <span class="nav-item-icon">🚛</span>
+          <span>Fleet Management</span>
+          <span class="nav-item-badge">10</span>
+        </a>
+        <a class="nav-item" data-view="routes" onclick="navigateTo('routes')">
+          <span class="nav-item-icon">⚡</span>
+          <span>Route Optimization</span>
+          <span class="nav-item-badge" style="background-color: #d97706; color: #fff;">-26.5%</span>
+        </a>
+        <a class="nav-item" data-view="scheduling" onclick="navigateTo('scheduling')">
+          <span class="nav-item-icon">📅</span>
+          <span>Smart Scheduling</span>
+        </a>
+        <a class="nav-item" data-view="operations" onclick="navigateTo('operations')">
+          <span class="nav-item-icon">📡</span>
+          <span>Live Operations</span>
+          <span class="nav-item-badge" style="background-color: #0284c7; color: #fff;">Sim</span>
+        </a>
+        <a class="nav-item" data-view="analytics" onclick="navigateTo('analytics')">
+          <span class="nav-item-icon">📈</span>
+          <span>Analytics</span>
+        </a>
+      </nav>
+
+      <!-- Sidebar Footer (Mandatory per Spec) -->
+      <div class="sidebar-footer">
+        <div class="footer-meta">AI-Powered Municipal Waste Management</div>
+        <div style="display: flex; align-items: center; justify-content: space-between;">
+          <span class="demo-pill">
+            <span class="pulse-dot"></span>
+            DEMO VERSION
+          </span>
+          <span style="font-size: 0.68rem; color: #64748b;">v1.0.4 Prototype</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN APPLICATION WRAPPER -->
+    <main class="main-wrapper">
+      <!-- TOPBAR / HEADER (Mandatory per Spec) -->
+      <header class="top-header">
+        <div class="header-left">
+          <div class="page-title-group">
+            <h1>SmartWaste AI</h1>
+            <p><strong>Municipal Waste Collection Optimization</strong> • AI-powered collection planning and operations</p>
+          </div>
+        </div>
+
+        <div class="header-right">
+          <div class="badge-simulated">
+            <span class="pulse-dot" style="background-color: #d97706; box-shadow: 0 0 6px #d97706;"></span>
+            DEMO • SIMULATED DATA
+          </div>
+          <button class="quick-action-btn primary" onclick="runFullAIPipeline()" title="Execute full end-to-end municipal optimization workflow">
+            <span>⚡</span> Run Full AI Pipeline
+          </button>
+        </div>
+      </header>
+
+      <!-- CORE WORKFLOW & CONCEPT BANNER (Mandatory per Section 25) -->
+      <section class="concept-workflow-bar">
+        <div class="concept-text">
+          <span>💡</span>
+          <span>
+            <strong>Concept:</strong> SmartWaste AI transforms fixed waste collection into intelligent, demand-based collection by predicting waste levels, prioritizing collection points, assigning available vehicles, optimizing routes and schedules, and providing operational visibility.
+          </span>
+        </div>
+
+        <!-- Workflow Visual Progression -->
+        <div class="workflow-steps-strip">
+          <span style="font-size: 0.72rem; font-weight: 700; color: #065f46; margin-right: 4px;">WORKFLOW:</span>
+          <div class="wf-step active" id="wf-predict" onclick="navigateTo('predictions')">1. PREDICT</div>
+          <span class="wf-arrow">→</span>
+          <div class="wf-step" id="wf-prioritize" onclick="navigateTo('points')">2. PRIORITIZE</div>
+          <span class="wf-arrow">→</span>
+          <div class="wf-step" id="wf-assign" onclick="navigateTo('fleet')">3. ASSIGN</div>
+          <span class="wf-arrow">→</span>
+          <div class="wf-step" id="wf-optimize" onclick="navigateTo('routes')">4. OPTIMIZE</div>
+          <span class="wf-arrow">→</span>
+          <div class="wf-step" id="wf-schedule" onclick="navigateTo('scheduling')">5. SCHEDULE</div>
+          <span class="wf-arrow">→</span>
+          <div class="wf-step" id="wf-monitor" onclick="navigateTo('operations')">6. MONITOR</div>
+          <span class="wf-arrow">→</span>
+          <div class="wf-step" id="wf-analyze" onclick="navigateTo('analytics')">7. ANALYZE</div>
+        </div>
+      </section>
+
+      <!-- DYNAMIC CONTENT VIEW CONTAINER -->
+      <section id="main-content-view">
+        <!-- Rendered dynamically by app.js -->
+      </section>
+    </main>
+  </div>
+
+  <!-- INTERACTIVE DETAILS MODAL (Collection Points & Vehicles) -->
+  <div class="modal-overlay" id="details-modal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <span style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: #059669; letter-spacing: 0.05em;">
+          Municipal Operations Telemetry
+        </span>
+        <button class="modal-close-btn" onclick="closeModal()" aria-label="Close dialog">&times;</button>
+      </div>
+      <div id="modal-body-content">
+        <!-- Injected via JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATIONS CONTAINER -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- Application Script -->
+  <script src="app.js"></script>
+</body>
+</html>
